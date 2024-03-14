@@ -8,10 +8,10 @@
   padding: 0px 25px;
 }
 .seat{
-  width: 20px;
+  width: 22px;
   height: 20px;
   border-radius: 50% 50% 0px 0px;
-  margin: 3px;
+  margin: 5px;
   cursor: pointer;
 }
 .seat:hover{
