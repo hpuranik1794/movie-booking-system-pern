@@ -17,9 +17,9 @@ const MovieProvider = ({ children }) => {
     );
   }
 
-  const addTheatreDesc = (movie) => {
+  const addTheatreDesc = (movie) => { 
     movie.availableSeats = 48;
-    movie.seats = [];
+    
     var char = 'A';
     for (let i = 0; i < 6; ++i) {
       for (let j = 0; j < 8; ++j) {
