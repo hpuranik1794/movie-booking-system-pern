@@ -31,7 +31,7 @@ const Seat = ({ seatId, seatStatus }) => {
       className={`seat ${seatId} ${seatStatus}`} 
       onClick={(e) => handleSeatClick(e, seatId)}
     >
-      {seatId}
+      {seatId === "booked" ? "" : seatId}
     </div>
   )
 }
