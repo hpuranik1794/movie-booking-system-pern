@@ -5,6 +5,7 @@ import PriceCalculator from './PriceCalculator';
 import { useContext } from 'react';
 import { MovieContext } from './context/MovieContext';
 import SeatLegend from './SeatLegend';
+import { Button } from '@mui/material';
 
 function MovieInfo() {
   const { movies, setMovies } = useContext(MovieContext);
@@ -23,6 +24,7 @@ function MovieInfo() {
       <SeatLegend />
       <Theatre movie={movie} />
       <PriceCalculator movie={movie} />
+      <Button>Submit</Button>
     </main>
       
   )
