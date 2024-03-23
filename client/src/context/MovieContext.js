@@ -13,7 +13,7 @@ const MovieProvider = ({ children }) => {
       {
         "id": `${id}`,
         "status": "available"
-      }
+      } 
     );
   }
 

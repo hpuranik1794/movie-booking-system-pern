@@ -1,8 +1,10 @@
 import { styled } from '@mui/material/styles';
 import { Grid, Stack, Box, Container, Paper, Typography, Link } from '@mui/material'
 import SearchBar from './components/SearchBar';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { MovieContext } from './context/MovieContext';
+import { toast } from "react-toastify";
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -14,6 +16,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const Shows = () => {
   const { movies, setMovies, search, setSearch } = useContext(MovieContext);
+
   return (
     <Container>
       <br />
