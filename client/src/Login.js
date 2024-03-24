@@ -109,7 +109,7 @@ const Login = () => {
       setEmail('');
       setPwd('');
     } catch (err) {
-      if (err?.response) {
+      if (!err?.response) {
         setErrMsg("No Server Response");
       } else if (err.response?.status === 400) {
         setErrMsg("Missing email or password");

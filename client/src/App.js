@@ -7,12 +7,12 @@ import Login from "./Login";
 import Register from "./Register";
 import { AuthProvider } from './context/AuthContext.js';
 import AuthContext from './context/AuthContext.js';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 const App = () => {
   const { auth, setAuth } = useContext(AuthContext);
   return (
-    <AuthProvider>
+    
       <MovieProvider>
         <Routes path="/">
           <Route index element={
@@ -45,7 +45,7 @@ const App = () => {
           <Route path="/:movieId" exact element={<MovieInfo />} />
         </Routes>
       </MovieProvider>
-    </AuthProvider>
+    
     
   )
 }
