@@ -10,13 +10,14 @@ import AuthContext from './context/AuthContext.js';
 import { useContext, useEffect } from 'react';
 
 const App = () => {
-  const { auth, setAuth } = useContext(AuthContext);
+  const accessToken = localStorage.getItem("accessToken");
+  
   return (
     
       <MovieProvider>
         <Routes path="/">
           <Route index element={
-                    (JSON.stringify(auth)!=='{}') ? (
+                    (accessToken) ? (
                       <Shows />
                     ) : (
                       <Navigate to="/login" />
@@ -24,7 +25,7 @@ const App = () => {
                   }
           />
           <Route path="/login" element={
-                   (JSON.stringify(auth)==='{}') ? (
+                   (!accessToken) ? (
                     <Login />
                   ) : (
                     <Navigate to="/" />
@@ -32,7 +33,7 @@ const App = () => {
                 }
           />
           <Route path="/register" element={
-                  (JSON.stringify(auth)==='{}') ? (
+                  (!accessToken) ? (
                     <Register />
                   ) : (
                     <Navigate to="/" />

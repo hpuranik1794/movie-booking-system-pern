@@ -108,6 +108,7 @@ const Login = () => {
       setAuth({ email, pwd, accessToken });
       setEmail('');
       setPwd('');
+      localStorage.setItem("accessToken", accessToken);
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");

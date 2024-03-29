@@ -15,7 +15,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Shows = () => {
-  const { movies, setMovies, search, setSearch } = useContext(MovieContext);
+  const { movies, search, setSearch } = useContext(MovieContext);
 
   return (
     <Container>
