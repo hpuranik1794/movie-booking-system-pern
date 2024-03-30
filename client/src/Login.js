@@ -75,6 +75,7 @@
 import { useRef, useState, useEffect, useContext } from "react";
 import AuthContext from "./context/AuthContext"
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import axios from "./api/axios";
 const LOGIN_URL = "/auth/login";
@@ -89,6 +90,7 @@ const Login = () => {
 
   const [errMsg, setErrMsg] = useState('');
 
+  const navigate = useNavigate();
   useEffect(() => {
     setErrMsg('');
   }, [email, pwd]);
@@ -109,6 +111,7 @@ const Login = () => {
       setEmail('');
       setPwd('');
       localStorage.setItem("accessToken", accessToken);
+      navigate("/");
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");

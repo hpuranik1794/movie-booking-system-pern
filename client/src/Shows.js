@@ -1,10 +1,10 @@
 import { styled } from '@mui/material/styles';
-import { Grid, Stack, Box, Container, Paper, Typography, Link } from '@mui/material'
+import { Grid, Button, Container, Paper, Typography, Link } from '@mui/material'
 import SearchBar from './components/SearchBar';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { MovieContext } from './context/MovieContext';
-import { toast } from "react-toastify";
-
+import AuthContext from './context/AuthContext';
+import { Navigate } from 'react-router-dom';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -16,7 +16,10 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const Shows = () => {
   const { movies, search, setSearch } = useContext(MovieContext);
-
+  const { auth } = useContext(AuthContext);
+  if (!auth?.accessToken) {
+    return <Navigate to="/login" replace />
+  }
   return (
     <Container>
       <br />
@@ -57,7 +60,6 @@ const Shows = () => {
         }
       </Grid>
     </Container>
-    
   );
 }
 

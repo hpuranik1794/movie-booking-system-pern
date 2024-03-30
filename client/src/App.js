@@ -5,49 +5,25 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import MovieProvider from './context/MovieContext'
 import Login from "./Login";
 import Register from "./Register";
+import Logout from './Logout.js';
 import { AuthProvider } from './context/AuthContext.js';
 import AuthContext from './context/AuthContext.js';
 import { useContext, useEffect } from 'react';
 
 const App = () => {
-  const accessToken = localStorage.getItem("accessToken");
-  
   return (
-    
       <MovieProvider>
-        <Routes path="/">
-          <Route index element={
-                    (accessToken) ? (
-                      <Shows />
-                    ) : (
-                      <Navigate to="/login" />
-                    )
-                  }
-          />
-          <Route path="/login" element={
-                   (!accessToken) ? (
-                    <Login />
-                  ) : (
-                    <Navigate to="/" />
-                  )
-                }
-          />
-          <Route path="/register" element={
-                  (!accessToken) ? (
-                    <Register />
-                  ) : (
-                    <Navigate to="/" />
-                  )
-                }
-          />
-          {/* <Route index element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/shows" element={<Shows />} /> */}
-          <Route path="/:movieId" exact element={<MovieInfo />} />
-        </Routes>
+        <AuthProvider>
+          <Routes path="/">
+            <Route index element={<Shows />}/>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/logout" element={<Logout />} />
+            <Route path="/:movieId" exact element={<MovieInfo />} />
+            <Route path="*" element={<Navigate to="/login" replace />} />
+          </Routes>
+        </AuthProvider>
       </MovieProvider>
-    
-    
   )
 }
 
