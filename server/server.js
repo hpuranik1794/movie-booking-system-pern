@@ -31,10 +31,17 @@ const corsOptions = {
 
 app.use(credentials);
 app.use(cors(corsOptions));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+
+
+
 app.use("/auth", require("./routes/authJWT"));
+
+
 app.use(verifyJWT);
+app.use("/movies", require("./routes/movies"));
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

@@ -75,13 +75,13 @@
 import { useRef, useState, useEffect, useContext } from "react";
 import AuthContext from "./context/AuthContext"
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 
 import axios from "./api/axios";
 const LOGIN_URL = "/auth/login";
 
 const Login = () => {
-  const { setAuth } = useContext(AuthContext);
+  const { auth, setAuth } = useContext(AuthContext);
   const emailRef = useRef();
   const errRef = useRef();
 
@@ -91,9 +91,14 @@ const Login = () => {
   const [errMsg, setErrMsg] = useState('');
 
   const navigate = useNavigate();
+  
   useEffect(() => {
     setErrMsg('');
   }, [email, pwd]);
+
+  if (localStorage.getItem("accessToken")) {
+    return <Navigate to="/" replace />
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
