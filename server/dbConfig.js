@@ -19,4 +19,4 @@ const pool = new Pool({
 //   PORT: process.env.DB_PORT,
 // })
 
-module.exports = pool;
+module.exports = { pool, connectionString };
