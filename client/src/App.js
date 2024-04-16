@@ -13,7 +13,6 @@ import { useContext, useEffect } from 'react';
 const App = () => {
   return (
       <MovieProvider>
-        <AuthProvider>
           <Routes path="/">
             <Route index element={<Shows />}/>
             <Route path="/login" element={<Login />} />
@@ -22,7 +21,6 @@ const App = () => {
             <Route path="/:movieId" exact element={<MovieInfo />} />
             <Route path="*" element={<Navigate to="/login" replace />} />
           </Routes>
-        </AuthProvider>
       </MovieProvider>
   )
 }
