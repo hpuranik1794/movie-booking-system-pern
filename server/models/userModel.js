@@ -1,13 +1,5 @@
-const { DataTypes, Sequelize } = require('sequelize');
-const { connectionString } = require('../dbConfig');
-
-const sequelize = new Sequelize(connectionString, {
-  logging: false,
-  dialect: 'postgres'
-});
-
-
-const User = sequelize.define(
+module.exports = (sequelize, DataTypes) => {
+  return sequelize.define(
   "user",
   {
     email: {
@@ -20,8 +12,5 @@ const User = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false
     },
-  }
-)
-
-
-module.exports = { User, sequelize };
+  })
+}

@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const pool = require("../dbConfig");
 const generateJWT = require("../utils/generateJWT");
-const { User } = require("../models/userModel");
+const { Users } = require("../sequelize");
 
 const handleLogin = async (req, res) => {
   const { email, pwd } = req.body;
@@ -9,7 +9,7 @@ const handleLogin = async (req, res) => {
   if (!email || !pwd) return res.sendStatus(400);
 
   // const user = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
-  const user = await User.findOne({ where: { email: email } })
+  const user = await Users.findOne({ where: { email: email } })
   // if (user.rows.length === 0) return res.sendStatus(401);
   if (!user) return res.sendStatus(401);
 

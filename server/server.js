@@ -1,10 +1,9 @@
 require("dotenv").config()
 const express = require("express");
-const app = express();
 const cors = require("cors");
+const auth = require("./routes/authJWT");
+const movies = require("./routes/movies");
 const verifyJWT = require("./middleware/verifyJWT");
-const PORT = process.env.PORT || 3500;
-const { User, sequelize } = require("./models/userModel");
 
 const credentials = (req, res, next) => {
   const origin = req.headers.origin;
@@ -30,30 +29,20 @@ const corsOptions = {
   optionsSuccessStatus: 200
 }
 
+const app = express();
+
 app.use(credentials);
 app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-
-console.log(User);
-
-
-app.use("/auth", require("./routes/authJWT"));
-
+app.use("/auth", auth);
 
 app.use(verifyJWT);
-app.use("/movies", require("./routes/movies"));
+app.use("/movies", movies);
 
-try {
-  sequelize.authenticate();
-  console.log("Connection has been established successfully.");
-  sequelize.sync();
-  console.log("Initialized tables");
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
-} catch (err) {
-  console.log(err);
-}
+const PORT = process.env.PORT || 3500;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
