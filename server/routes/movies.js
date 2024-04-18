@@ -1,7 +1,9 @@
 const router = require("express").Router();
 const movieController = require("../controllers/movieController");
 
-router.route("/")
-  .get(movieController.getMoviesData);
+router
+  .get("/", movieController.getMovies)
+  .get("/:movieId", movieController.getMovieById)
+  .put("/:movieId", movieController.updateMovieById)
 
 module.exports = router

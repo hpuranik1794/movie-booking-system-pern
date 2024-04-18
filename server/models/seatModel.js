@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.CHAR,
       allowNull: false
     },
+    col: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
     status: {
       type: DataTypes.BOOLEAN,
       allowNull: false

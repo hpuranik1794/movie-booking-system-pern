@@ -5,8 +5,8 @@ const movieModel = require("./models/movieModel");
 const seatModel = require("./models/seatModel");
 
 const sequelize = new Sequelize(process.env.DB_URL, {
-  logging: false,
-  dialect: 'postgres'
+  dialect: 'postgres',
+  logging: false
 });
 
 (async () => {
@@ -14,13 +14,13 @@ const sequelize = new Sequelize(process.env.DB_URL, {
   await sequelize.sync({ alter: true });
 })();
 
-const Users = userModel(sequelize, DataTypes);
-const Movies = movieModel(sequelize, DataTypes);
-const Seats = seatModel(sequelize, DataTypes);
+const User = userModel(sequelize, DataTypes);
+const Movie = movieModel(sequelize, DataTypes);
+const Seat = seatModel(sequelize, DataTypes);
 
-Seats.sync({force: true});
+
 // association
-Seats.belongsTo(Movies, { "foreign_key": "movieId" });
+Seat.belongsTo(Movie, { "foreign_key": "movieId" });
 
-module.exports = { Users, Movies, Seats }
+module.exports = { User, Movie, Seat }
 
