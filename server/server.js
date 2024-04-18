@@ -96,7 +96,7 @@ const getMoviesData = async () => {
   console.log(data.results);
 }
 
-cron.schedule("*/5 * * * *", () => {
+cron.schedule("0 0 * * *", () => {
   console.log("Fetching data from API and updating DB");
   getMoviesData();
 })
