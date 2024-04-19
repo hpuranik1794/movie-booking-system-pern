@@ -6,6 +6,7 @@ import { MovieContext } from './context/MovieContext';
 import AuthContext from './context/AuthContext';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { axiosPrivate } from './api/axios';
+import useData from './hooks/useData';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -20,26 +21,25 @@ const Shows = () => {
   const navigate = useNavigate();
   
   useEffect(() => {
-    let isMounted = true;
-    const controller = new AbortController();
+    let ignore = false;
+    // const controller = new AbortController();
     const getData = async () => {
       try {
         const response = await axiosPrivate.get("/movies", {
-          signal: controller.signal,
           headers: {
             'authorization': `Bearer ${localStorage.getItem("accessToken")}`
           }
         });
-        isMounted && setMovies(response.data.results);
+        console.log(response.data);
+        // isMounted && setMovies(response);
+        !ignore && setMovies(response.data);
       } catch (err) {
         console.error(err);
       }
     }
     getData();
-
     return () => {
-      isMounted = false;
-      controller.abort();
+      ignore = true;
     }
   }, []);
 
@@ -70,17 +70,17 @@ const Shows = () => {
       >
         {
           movies.filter((movie) => (
-            (movie.original_title).toLowerCase().includes(search.toLowerCase())
+            (movie.title).toLowerCase().includes(search.toLowerCase())
           )).map((movie) => (
             
-              <Grid item md={3} key={movie.id} >
-                <Link href={`/${movie.id}`}>
+              <Grid item md={3} key={movie.movie_id} >
+                <Link href={`/${movie.movie_id}`}>
                   <Item >
                     <img 
                       src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} 
-                      alt={movie.original_title}
+                      alt={movie.title}
                     />
-                    <Typography variant='subtitle1'>{movie.original_title}</Typography>
+                    <Typography variant='subtitle1'>{movie.title}</Typography>
                   </Item>
                 </Link>
               </Grid>
