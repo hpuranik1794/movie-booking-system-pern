@@ -97,6 +97,19 @@ const getMovieById = async (req, res) => {
   res.json(movie);
 }
 
+const getSeats = async (req, res) => {
+  const movieId = req.params.movieId;
+  const seats = await Seat.findAll({ 
+    where : { 
+      movie_id: movieId 
+    }, 
+    order: [
+      ['row', 'ASC'],
+      ['col', 'ASC']
+    ]});
+  res.json(seats);
+}
+
 const updateSeats = async (seats, movieId) => {
   try {
     seats.forEach((seat) => (
@@ -114,10 +127,10 @@ const updateSeats = async (seats, movieId) => {
 }
 
 const updateMovieById = async (req, res) => {
+  const movieId = req.params.movieId;
+  const seats = req.body.ss;
+  const numSeats = seats.length;
   try {
-    const movieId = req.params.movieId;
-    const seats = req.body.seats;
-    const numSeats = seats.length;
     updateSeats(seats, movieId);
     const movie = await Movie.findOne({ where : { movie_id: movieId } });
     movie.av_seats -= numSeats;
@@ -130,4 +143,4 @@ const updateMovieById = async (req, res) => {
 }
 
 
-module.exports = { getMovies, getMovieById, updateMovieById }
+module.exports = { getMovies, getMovieById, getSeats, updateMovieById }

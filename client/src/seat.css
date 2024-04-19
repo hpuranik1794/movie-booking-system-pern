@@ -21,14 +21,14 @@
   justify-content: center;
   align-items: flex-start;
 }
-.available{
+.av {
   background-color: #ddd;
 }
-.selected{
+.select {
   background-color: limegreen;
   color: black;
 }
-.booked{
+.booked {
   background-color: red;
   color: black;
 }

@@ -15,19 +15,28 @@ function MovieInfo() {
   // const movie = movies.find(movie => (movie.id).toString() === movieId);
   const { movieId } = useParams();
   const [movie, setMovie] = useState({});
+  const [seats, setSeats] = useState([]);
   useEffect(() => {
     let ignore = false;
     // const controller = new AbortController();
     const getData = async () => {
       try {
-        const response = await axiosPrivate.get(`/movies/${movieId}`, {
+        const promise1 = axiosPrivate.get(`/movies/${movieId}`, {
           headers: {
             'authorization': `Bearer ${localStorage.getItem("accessToken")}`
           }
         });
-        console.log(response.data);
+        const promise2 = axiosPrivate.get(`/movies/seats/${movieId}`, {
+          headers: {
+            'authorization': `Bearer ${localStorage.getItem("accessToken")}`
+          }
+        });
+        const [movieInfo, seats] = await Promise.all([promise1, promise2]);
+        console.log(movieInfo.data);
+        console.log(seats.data);
         // isMounted && setMovies(response);
-        !ignore && setMovie(response.data);
+        !ignore && setMovie(movieInfo.data);
+        !ignore && setSeats(seats.data);
       } catch (err) {
         console.error(err);
       }
@@ -50,9 +59,8 @@ function MovieInfo() {
         </>}
       </article>
       <SeatLegend />
-      {/* <Theatre movie={movie} />
-      <PriceCalculator movie={movie} /> */}
-      <Button>Submit</Button>
+      <Theatre seats={seats} />
+      
     </main>
       
   )

@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     row: {
-      type: DataTypes.CHAR,
+      type: DataTypes.CHAR(1),
       allowNull: false
     },
     col: {
