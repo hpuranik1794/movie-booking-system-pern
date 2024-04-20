@@ -7,7 +7,7 @@ import { MovieContext } from './context/MovieContext';
 import SeatLegend from './SeatLegend';
 import { Button } from '@mui/material';
 import { axiosPrivate } from './api/axios';
-import useData from './hooks/useData';
+import useAxiosPrivate from './hooks/useAxiosPrivate';
 
 function MovieInfo() {
   // const { movies, setMovies } = useContext(MovieContext);
@@ -16,21 +16,14 @@ function MovieInfo() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState({});
   const [seats, setSeats] = useState([]);
+  const axiosPrivate1 = useAxiosPrivate();
   useEffect(() => {
     let ignore = false;
     // const controller = new AbortController();
     const getData = async () => {
       try {
-        const promise1 = axiosPrivate.get(`/movies/${movieId}`, {
-          headers: {
-            'authorization': `Bearer ${localStorage.getItem("accessToken")}`
-          }
-        });
-        const promise2 = axiosPrivate.get(`/movies/seats/${movieId}`, {
-          headers: {
-            'authorization': `Bearer ${localStorage.getItem("accessToken")}`
-          }
-        });
+        const promise1 = axiosPrivate1.get(`/movies/${movieId}`);
+        const promise2 = axiosPrivate1.get(`/movies/seats/${movieId}`);
         const [movieInfo, seats] = await Promise.all([promise1, promise2]);
         console.log(movieInfo.data);
         console.log(seats.data);

@@ -5,6 +5,7 @@ const cron = require("node-cron");
 const axios = require("axios");
 const { Movie, Seat } = require("./sequelize");
 const auth = require("./routes/authJWT");
+const refresh = require("./routes/refresh");
 const movies = require("./routes/movies");
 const verifyJWT = require("./middleware/verifyJWT");
 
@@ -40,6 +41,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use("/auth", auth);
+app.use("/refresh", refresh);
 
 app.use(verifyJWT);
 app.use("/movies", movies);

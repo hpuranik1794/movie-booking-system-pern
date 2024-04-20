@@ -6,7 +6,7 @@ import { MovieContext } from './context/MovieContext';
 import AuthContext from './context/AuthContext';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { axiosPrivate } from './api/axios';
-import useData from './hooks/useData';
+import useAxiosPrivate from './hooks/useAxiosPrivate';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -19,17 +19,14 @@ const Item = styled(Paper)(({ theme }) => ({
 const Shows = () => {
   const [movies, setMovies] = useState([]);
   const navigate = useNavigate();
+  const axiosPrivate1 = useAxiosPrivate();
   
   useEffect(() => {
     let ignore = false;
     // const controller = new AbortController();
     const getData = async () => {
       try {
-        const response = await axiosPrivate.get("/movies", {
-          headers: {
-            'authorization': `Bearer ${localStorage.getItem("accessToken")}`
-          }
-        });
+        const response = await axiosPrivate1.get("/movies");
         console.log(response.data);
         // isMounted && setMovies(response);
         !ignore && setMovies(response.data);
@@ -40,6 +37,7 @@ const Shows = () => {
     getData();
     return () => {
       ignore = true;
+      // controller.abort();
     }
   }, []);
 

@@ -19,16 +19,16 @@ const handleLogin = async (req, res) => {
   
   // const accessToken = generateJWT(user.rows[0].email);
   const accessToken = generateJWT(user.email, "a");
-  // const refreshToken = generateJWT(user.email, "r");
-  // user.refresh_token = refreshToken;
-  // const result = await user.save();
-
-  // res.cookie('jwt', refreshToken, { 
-  //   httpOnly: true, 
-  //   sameSite: 'None', 
-  //   secure: true, 
-  //   maxAge: 24 * 60 * 60 * 1000 
-  // });  
+  const refreshToken = generateJWT(user.email, "r");
+  user.refresh_token = refreshToken;
+  await user.save();
+  console.log(res.cookie('jwt'));
+  res.cookie('jwt', refreshToken, { 
+    httpOnly: true, 
+    sameSite: 'None', 
+    secure: true, 
+    maxAge: 24 * 60 * 60 * 1000 
+  });  
   res.json({ accessToken });
   
 }
