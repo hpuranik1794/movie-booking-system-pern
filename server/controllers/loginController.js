@@ -16,12 +16,21 @@ const handleLogin = async (req, res) => {
   // const match = await bcrypt.compare(pwd, user.rows[0].pwd)
   const match = await bcrypt.compare(pwd, user.password)
   if (!match) return res.sendStatus(401);
-  else {
-    // const accessToken = generateJWT(user.rows[0].email);
-    const accessToken = generateJWT(user.email);
+  
+  // const accessToken = generateJWT(user.rows[0].email);
+  const accessToken = generateJWT(user.email, "a");
+  const refreshToken = generateJWT(user.email, "r");
+  user.refresh_token = refreshToken;
+  const result = await user.save();
 
-    res.json({ accessToken });
-  }
+  res.cookie('jwt', refreshToken, { 
+    httpOnly: true, 
+    sameSite: 'None', 
+    secure: true, 
+    maxAge: 24 * 60 * 60 * 1000 
+  });  
+  res.json({ accessToken });
+  
 }
 
 module.exports = { handleLogin }
