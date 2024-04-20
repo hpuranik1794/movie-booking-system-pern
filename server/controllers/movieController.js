@@ -84,7 +84,11 @@ const { Movie, Seat } = require("../sequelize");
 
 const getMovies = async (req, res) => {
   try {
-    const movies = await Movie.findAll();
+    const movies = await Movie.findAll({
+      order: [
+        ['id', 'ASC']
+      ]
+    });
     res.json(movies);
   } catch (err) {
     console.error(err.message);
