@@ -1,6 +1,6 @@
 import React from 'react';
 import Shows from './Shows.js'
-import MovieInfo from './MovieInfo.js';
+import Booking from './Booking.js';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import MovieProvider from './context/MovieContext'
 import Login from "./Login";
@@ -18,7 +18,7 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/logout" element={<Logout />} />
-            <Route path="/:movieId" exact element={<MovieInfo />} />
+            <Route path="/:movieId" exact element={<Booking />} />
             <Route path="*" element={<Navigate to="/login" replace />} />
           </Routes>
       </MovieProvider>

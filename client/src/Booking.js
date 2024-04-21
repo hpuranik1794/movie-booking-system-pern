@@ -8,8 +8,9 @@ import SeatLegend from './SeatLegend';
 import { Button } from '@mui/material';
 import { axiosPrivate } from './api/axios';
 import useAxiosPrivate from './hooks/useAxiosPrivate';
+import MovieInfo from './components/MovieInfo';
 
-function MovieInfo() {
+function Booking() {
   // const { movies, setMovies } = useContext(MovieContext);
   
   // const movie = movies.find(movie => (movie.id).toString() === movieId);
@@ -46,9 +47,13 @@ function MovieInfo() {
       <article>
         {movie && 
         <>
+          {/* <img src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt=""/>
           <h2>{movie.title}</h2>
           <p>{movie.overview}</p>
-          <img src={`https://image.tmdb.org/t/p/w200${movie.backdrop_path}`} alt="" />
+          {/* <img src={`https://image.tmdb.org/t/p/w600${movie.backdrop_path}`} alt=""/> 
+          
+          <img src={require("./image.png")} alt="hi" width="500"/> */}
+          <MovieInfo movie={movie}/>
         </>}
       </article>
       <SeatLegend />
@@ -59,4 +64,4 @@ function MovieInfo() {
   )
 }
 
-export default MovieInfo
+export default Booking;
