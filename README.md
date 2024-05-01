@@ -68,9 +68,9 @@ In a separate terminal,
 cd server
 npm run dev
 ```
-This will start the backend server on port 8000 and the React development server on port 3000 (default)
+This will start the backend server on port 8000 and the React development server on port 3000 (default).
 
-Access the application at `http://localhost:3000`
+Access the application at `http://localhost:3000`.
 
 
 ## CRON Jobs
