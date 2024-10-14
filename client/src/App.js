@@ -1,18 +1,20 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Landing from 'pages/Landing.js'
 import Booking from 'pages/Booking';
+import Login from 'pages/Login';
+import Logout from 'pages/Logout';
+import Register from 'pages/Register';
 
 const App = () => {
   return (
     <Routes path="/">
       <Route index element={<Landing />}/>
-      {/* <Route path="/login" element={<Login />} />
+      <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/logout" element={<Logout />} /> */}
+      <Route path="/logout" element={<Logout />} />
       <Route path="/:movieId" exact element={<Booking />} />
-      <Route path="*" element={<Landing />}/>
-      {/* <Route path="*" element={<Navigate to="/login" replace />} /> */}
+      <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
   )
 }

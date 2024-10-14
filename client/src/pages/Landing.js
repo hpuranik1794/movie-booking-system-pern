@@ -66,49 +66,6 @@ const Landing = () => {
 
     </Box>
   );
-  // return (
-  //   <Container  >
-  //     <br />
-  //     <Typography 
-  //       display="flex" 
-  //       justifyContent="center" 
-  //       variant='h4'
-  //     >
-  //       Now Playing
-  //     </Typography>
-  //     <Box
-  //       display="flex"
-  //       justifyContent="center"
-  //       alignItems="center"
-  //       minHeight="15vh"
-  //     >
-  //       <SearchBar2 
-  //         movies={movies} 
-  //         search={search} 
-  //         setSearch={setSearch}
-  //       />
-  //     </Box>
-      
-  //     <br />
-  //     <Grid container 
-  //       spacing={2} 
-  //       columnSpacing={2} 
-  //       display="flex" 
-  //       justifyContent="left" 
-  //       alignItems="center"
-  //       alignContent="center"
-  //     >
-  //       {
-  //         movies.filter((movie) => (
-  //           (movie.title).toLowerCase().includes(search.toLowerCase())
-  //         )).map((movie) => (
-  //             <MovieCard movie={movie} />
-  //         ))
-  //       }
-        
-  //     </Grid>
-  //   </Container>
-  // );
 }
 
 export default Landing;
