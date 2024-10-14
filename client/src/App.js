@@ -1,27 +1,19 @@
 import React from 'react';
-import Shows from './Shows.js'
-import Booking from './Booking.js';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import MovieProvider from './context/MovieContext'
-import Login from "./Login";
-import Register from "./Register";
-import Logout from './Logout.js';
-import { AuthProvider } from './context/AuthContext.js';
-import AuthContext from './context/AuthContext.js';
-import { useContext, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Landing from 'pages/Landing.js'
+import Booking from 'pages/Booking';
 
 const App = () => {
   return (
-      <MovieProvider>
-          <Routes path="/">
-            <Route index element={<Shows />}/>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/logout" element={<Logout />} />
-            <Route path="/:movieId" exact element={<Booking />} />
-            <Route path="*" element={<Navigate to="/login" replace />} />
-          </Routes>
-      </MovieProvider>
+    <Routes path="/">
+      <Route index element={<Landing />}/>
+      {/* <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/logout" element={<Logout />} /> */}
+      <Route path="/:movieId" exact element={<Booking />} />
+      <Route path="*" element={<Landing />}/>
+      {/* <Route path="*" element={<Navigate to="/login" replace />} /> */}
+    </Routes>
   )
 }
 

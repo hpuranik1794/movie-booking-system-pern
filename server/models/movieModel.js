@@ -3,7 +3,8 @@ module.exports = (sequelize, DataTypes) => {
       movie_id: {
         type: DataTypes.INTEGER,
         unique: true,
-        allowNull: false
+        allowNull: false,
+        primaryKey: true,
       },
       title: {
         type: DataTypes.STRING,
@@ -24,11 +25,11 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DOUBLE,
         allowNull: false
       },
-      price: {
-        type: DataTypes.INTEGER,
+      cost: {
+        type: DataTypes.DOUBLE,
         allowNull: false
       },
-      av_seats: {
+      availableSeats: {
         type: DataTypes.INTEGER,
         allowNull: false
       },

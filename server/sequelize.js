@@ -20,7 +20,8 @@ const Seat = seatModel(sequelize, DataTypes);
 
 
 // association
-Seat.belongsTo(Movie, { "foreign_key": "movieId" });
+Movie.hasMany(Seat, { foreignKey: "movie_id", onDelete: "cascade" });
+Seat.belongsTo(Movie, { foreignKey: "movie_id" });
 
-module.exports = { User, Movie, Seat }
+module.exports = { User, Movie, Seat, sequelize }
 

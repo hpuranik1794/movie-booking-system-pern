@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
-import { Grid, Stack, Box, Button, Container, Paper, Typography, Link } from '@mui/material'
 import Seat from './Seat';
-import { axiosPrivate } from './api/axios';
+import { axiosPrivate } from 'api/axios';
 
 function Theatre({ seats }) {
   const rowA = seats.slice(0, 8);

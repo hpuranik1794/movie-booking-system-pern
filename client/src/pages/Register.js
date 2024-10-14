@@ -1,99 +1,5 @@
-// import { useState } from 'react'
-// import { Link } from 'react-router-dom';
-// import { toast } from "react-toastify";
-// import { useNavigate } from 'react-router-dom';
-
-// const Register = ({ setAuth }) => {
-//   const [inputs, setInputs] = useState({
-//     name: "",
-//     email: "",
-//     password: "",
-//     retype_password: ""
-//   });
-//   const navigate = useNavigate();
-
-//   const { name, email, password, retype_password } = inputs;
-
-//   const onChange = (e) => {
-//     setInputs({...inputs, [e.target.name]: e.target.value});
-//   }
-
-//   const onSubmitForm = async (e) => {
-//     e.preventDefault();
-//     try {
-//       const body = {name, email, password, retype_password};
-//       const response = await fetch("http://localhost:5000/auth/register",
-//         {
-//           method: "POST",
-//           headers: {
-//             "Content-Type": "application/json"
-//           },
-//           body: JSON.stringify(body),
-//         }
-//       );
-
-//       const parseResponse = await response.json();
-//       console.log(parseResponse)
-//       if (parseResponse.token) {
-//         localStorage.setItem("token", parseResponse.token);
-//         setAuth(true);
-//         console.log("Registered Successfully");
-//         navigate("/login");
-//       } else {
-//         setAuth(false);
-//         toast.error(parseResponse);
-//       }
-//     } catch (err) {
-//       console.log(err.message);
-//     }
-//   }
-//   return (
-//     <div>
-//       <h1 className="register-header">Register</h1>
-//       <form onSubmit={onSubmitForm}>
-//         <label htmlFor="name">Name:</label>
-//         <input
-//           type="text"
-//           name="name"
-//           value={name}
-//           onChange={e => onChange(e)}
-//           className="input-box"
-//         />
-//         <label htmlFor="email">Email:</label>
-//         <input
-//           type="email"
-//           name="email"
-//           value={email}
-//           onChange={e => onChange(e)}
-//           className="input-box"
-//         />
-//         <label htmlFor="password">Password:</label>
-//         <input
-//           type="password"
-//           name="password"
-//           value={password}
-//           onChange={e => onChange(e)}
-//           className="input-box"
-//         />
-//         <label htmlFor="retype_password">Confirm Password:</label>
-//         <input
-//           type="password"
-//           name="retype_password"
-//           value={retype_password}
-//           onChange={e => onChange(e)}
-//           className="input-box"
-//         />
-//         <button className="btn btn-success btn-block" type="submit">Submit</button>
-//       </form>
-//       <Link to="/login">login</Link>
-//     </div>
-//   )
-// }
-
-// export default Register
-
 import { useRef, useState, useEffect } from "react";
-import axios from "./api/axios";
+import axios from "../api/axios";
 import { useNavigate, Link } from "react-router-dom";
 
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -200,7 +106,6 @@ const Register = () => {
           value={matchPwd}
           required
         />
-        {/* !validEmail || !validPwd || !validMatch ? true : */}
         <button disabled={false}>Sign Up</button>
       </form>
       <p>
