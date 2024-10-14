@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom';
 import { Box, VStack, Button, Text } from '@chakra-ui/react';
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import axios from 'api/axios';
 import { wait } from 'utils/wait';
 import LoadingRing from 'components/LoadingRing';
-import SeatLegend from 'components/SeatLegend';
 import Description from 'components/Description';
+import SeatLegend from 'components/SeatLegend';
+import Theatre from 'components/Theatre';
 
 function Booking() {
   const { movieId } = useParams();
@@ -14,10 +15,20 @@ function Booking() {
   const [movie, setMovie] = useState({});
   const [seats, setSeats] = useState([]);
   const [visible, setVisible] = useState(false);
+  const theatreRef = useRef(null);
 
   const toggleTheatre = () => {
     setVisible(!visible);
   }
+
+  useEffect(() => {
+    if (visible) {
+      theatreRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [visible])
 
   useEffect(() => {
     const getMovie = async () => {
@@ -43,7 +54,7 @@ function Booking() {
     <Box
       padding={10}
       display='flex'
-      justifyContext='center'
+      justifyContent='center'
       color='cool-teal'
     >
       {
@@ -71,7 +82,12 @@ function Booking() {
               </Button>
               {
                 visible &&
-                <SeatLegend {...seats} />
+                <VStack
+                  rowGap='3vw'
+                >
+                  <SeatLegend />
+                  <Theatre ref={theatreRef} seats={seats} />
+                </VStack>
               }
 
             </VStack>

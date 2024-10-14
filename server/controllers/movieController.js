@@ -115,11 +115,9 @@ const getSeats = async (req, res) => {
 const updateSeats = async (seats, movieId) => {
   try {
     seats.forEach(async (seat) => {
-      const row = seat[0];
-      const col = seat[1];
-      const s = await Seat.findOne({ where : { movie_id: movieId, row: row, col: col } })
-      s.status = false;
-      await s.save();
+      const item = await Seat.findOne({ where : { movie_id: movieId, row: seat.row, col: seat.col } })
+      item.status = false;
+      await item.save();
     });
   } catch (error) {
     console.log(error.message);
@@ -127,15 +125,16 @@ const updateSeats = async (seats, movieId) => {
 }
 
 const updateMovieById = async (req, res) => {
-  const movieId = req.params.movieId;
-  const seats = req.body.ss;
+  const movieId = await req.params.movieId;
+  const seats = await req.body.selectedSeats;
   const numSeats = seats.length;
   try {
     updateSeats(seats, movieId);
     const movie = await Movie.findOne({ where : { movie_id: movieId } });
     movie.availableSeats -= numSeats;
     await movie.save();
-    res.json({ message: "Update Successful" })
+    console.log("Seats Booked:\n", seats)
+    res.json({ message: "Update Successful" });
   } catch (error) {
     console.log(error.message);
   }

@@ -30,6 +30,7 @@ const Landing = () => {
       padding={10}
       display='flex'
       justifyContent='center'
+      alignItems='center'
     >
       {
         loading 

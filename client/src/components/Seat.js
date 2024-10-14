@@ -1,12 +1,11 @@
-import { Checkbox } from "@chakra-ui/react";
+import { Checkbox, Text } from "@chakra-ui/react";
 
 const Seat = ({ ...props }) => {
   return (
     <Checkbox
       {...props}
-      
     >
-      {props.value}
+      <Text fontSize='1.5vw'>{props.value}</Text>
     </Checkbox>
   );
 }

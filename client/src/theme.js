@@ -16,6 +16,10 @@ const customTheme = extendTheme({
   },
   components: {
     Button: {
+      baseStyle: {
+        w: '22vw',
+        h: '5vw'
+      },
       variants: {
         ghost: {
           color: 'cool-teal',
