@@ -46,7 +46,7 @@ app.use("/api/auth", refresh);
 // app.use(verifyJWT);
 app.use("/api/movies", movies);
 
-cron.schedule("*/30 * * * *", async () => {
+cron.schedule("0 * * * *", async () => {
   console.log("Fetching data from API and updating DB");
   await fetchAndUpdateMovies();
   console.log("Done!");

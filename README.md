@@ -1,84 +1,49 @@
-# ReelSeat - Movie Booking System
+# Reel-Seat
 
-## Project Description
-
-ReelSeat is a movie booking system built with React for the frontend, Express.js for the backend, and PostgreSQL as the database. Users can browse movies, select seats, and book tickets for the top 20 latest movies.
-
-## Features:
-
-- Login/Registration system built on `JWT Auth`, `HTTP cookies` and `Bcrypt`
-- Browse latest movie listings with details extracted from [The Movie Database](https://www.themoviedb.org/)
-- View available seats for specific movies
-- Select and book seats
-
-
-## Project Setup
-
-### 1. Prerequisites:
-- Node.js and npm (or yarn) installed on your system.
-- PostgreSQL server running locally.
-
-### 2. Clone the repository
+## Structure
 ```bash
-git clone https://github.com/hpuranik1794/movie-booking-system-pern.git
+.
+├───assets
+├───client
+│   ├───public
+│   └───src
+│       ├───api
+│       ├───assets
+│       ├───components
+│       ├───context
+│       ├───hooks
+│       ├───pages
+│       └───utils
+└───server
+    ├───controllers
+    ├───middleware
+    ├───models
+    ├───routes
+    └───utils
 ```
 
-### 3. Install dependencies in both client and server
-```bash
-cd movie-booking-system-pern/client
-npm init
-cd ../server
-npm init
-```
+## Description
 
-Navigate to `server/package.json` and add the following to the scripts section:
-```
-"scripts": {
-    "dev": "nodemon server.js",
-    "start": "node server.js"
-  }
-```
+Reel-Seat is a movie booking system that enables users to browse the latest movies, view their plots, and select seats in a theatre for an upcoming show. The application is built with React frontend, Express.js backend, and PostgreSQL database. It integrates movie data from the [TMDB API](https://www.themoviedb.org/) and supports real-time seat reservation.
 
-### 4. Database configuration
-
-Create a file named `.env` in server directory and add the following environment variables with your PostgreSQL connection details:
-```
-DB_URL = postgresql://your_username:your_password@localhost:5432/movie
-```
-
-Make an account with TMDB, generate your API key and include it in the `.env` file.
-
-```
-API_KEY = your_tmdb_api_key
-```
-
-Finally, add your access token and refresh token secret keys, generated using `crypto`.
-```
-node
-> require('crypto').randomBytes(64).toString('hex')
-```
-
-### 5. Start the frontend and backend servers
-```bash
-cd client
-npm run start
-```
-In a separate terminal,
-```bash
-cd server
-npm run dev
-```
-This will start the backend server on port 8000 and the React development server on port 3000 (default).
-
-Access the application at `http://localhost:3000`.
+## Features
+- User authentication is implemented using JWT Auth and HTTP cookies.
+- CRON jobs run hourly to refresh movie listings and seat availability in the database.
+- Users can explore detailed movie plots before booking.
+- Users can choose their preferred seats using a dynamic seat map
 
 
-## CRON Jobs
-The project utilizes daily CRON jobs to automatically update the database with movies and seat information.
+## Demo
+https://github.com/hpuranik1794/movie-booking-system-pern/assets/demo.mp4
 
-## Further Development
+## Challenges
+- Customizing Chakra-UI components like the checkboxes for seat selection required a lot of research and digging in.
+- Clearly defining the relationship between the seat and movie models was time-consuming, especially while repopulating the database.
 
-- Implement booking history.
+
+## Ways to improve
+
+- Create a customized dashboard for users.
 - Integrate payment processing for ticket purchases.
 - Add features like seat reservation timeout and cancellation options.
 

@@ -45,7 +45,7 @@ const Landing = () => {
                 color='cool-yellow'
                 fontSize='5vw'
               >
-                Welcome to Wakanda Cinemas!
+                Welcome to Reel-Seat!
               </Heading>
               <Grid 
                 templateColumns='repeat(4, 1fr)' 
