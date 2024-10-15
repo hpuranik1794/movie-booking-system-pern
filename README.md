@@ -24,7 +24,7 @@
 
 ## Description
 
-Reel-Seat is a movie booking system that enables users to browse the latest movies, view their plots, and select seats in a theatre for an upcoming show. The application is built with React frontend, Express.js backend, and PostgreSQL database. It integrates movie data from the [TMDB API](https://www.themoviedb.org/) and supports real-time seat reservation.
+Reel-Seat is a movie booking system that enables users to browse the latest movies, view their plots, and select seats in a theatre for an upcoming show. It integrates movie data from the [TMDB API](https://www.themoviedb.org/) and supports real-time seat reservation.
 
 ## Features
 - User authentication is implemented using JWT Auth and HTTP cookies.
@@ -32,6 +32,11 @@ Reel-Seat is a movie booking system that enables users to browse the latest movi
 - Users can explore detailed movie plots before booking.
 - Users can choose their preferred seats using a dynamic seat map
 
+## Tech Stack
+- Language: Javascript
+- Frontend: React.js, Chakra UI
+- Backend: Node.js, Express.js
+- Database: PostgreSQL (Sequelize ORM)
 
 ## Demo
 https://github.com/user-attachments/assets/04af8145-87d2-4ef2-aa0c-545fdff0cfef
