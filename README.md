@@ -34,7 +34,8 @@ Reel-Seat is a movie booking system that enables users to browse the latest movi
 
 
 ## Demo
-https://github.com/hpuranik1794/movie-booking-system-pern/assets/demo.mp4
+https://github.com/user-attachments/assets/04af8145-87d2-4ef2-aa0c-545fdff0cfef
+
 
 ## Challenges
 - Customizing Chakra-UI components like the checkboxes for seat selection required a lot of research and digging in.
